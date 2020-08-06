@@ -1,14 +1,37 @@
 .rootWrapper {
-  padding: 15px 20px;
+  padding: 5px 20px;
   border-bottom: 1px solid #ddd;
   display: flex;
+  align-items: center;
+}
+
+.rootWrapper>* {
+  padding: 10px 0px;
 }
 
 .verticalLine {
   width: 1px;
-  background-color: #000;
+  background-color: #bbb;
+  height: 6px;
 }
 
-.grayColor {
+.icon {
   color:gray;
+  padding: 0 10px;
+}
+
+.selectOptions {
+  padding-right: 20px;
+}
+
+.selectText {
+  padding-right: 10px;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: .5px;
+}
+
+.iconGroup {
+  padding-left: 10px;
+  padding-right: 10px;
 }

@@ -6,32 +6,32 @@ import 'font-awesome/css/font-awesome.min.css';
 const TextOptions = ({ }) => {
   return (
     <div className={styles.rootWrapper}>
-      <div>
-        <span>
+      <div className={styles.selectOptions}>
+        <span className={styles.selectText}>
           Normal text
         </span>
-        <i className={`fa fa-caret-down ${styles.grayColor}`} />
+        <i className={`fa fa-caret-down ${styles.icon}`} />
       </div>
       <div className={styles.verticalLine}>&nbsp;</div>
-      <div>
-        <i className={`fa fa-bold ${styles.grayColor}`} />
-        <i className={`fa fa-italic ${styles.grayColor}`} />
-        <i className={`fa fa-ellipsis-h ${styles.grayColor}`} />
+      <div className={styles.iconGroup}>
+        <i className={`fa fa-bold ${styles.icon}`} />
+        <i className={`fa fa-italic ${styles.icon}`} />
+        <i className={`fa fa-ellipsis-h ${styles.icon}`} />
       </div>
       <div className={styles.verticalLine}>&nbsp;</div>
-      <div>
-        <i className={`fa fa-font ${styles.grayColor}`} />
+      <div className={styles.iconGroup}>
+        <i className={`fa fa-font ${styles.icon}`} />
       </div>
       <div className={styles.verticalLine}>&nbsp;</div>
-      <div>
-        <i className={`fa fa-list ${styles.grayColor}`} />
-        <i className={`fa fa-list-ol ${styles.grayColor}`} />
+      <div className={styles.iconGroup}>
+        <i className={`fa fa-list ${styles.icon}`} />
+        <i className={`fa fa-list-ol ${styles.icon}`} />
       </div>
       <div className={styles.verticalLine}>&nbsp;</div>
-      <div>
-        <i className={`fa fa-link ${styles.grayColor}`} />
-        <i className={`fa fa-picture-o ${styles.grayColor}`} />
-        <i className={`fa fa-quote-right ${styles.grayColor}`} />
+      <div className={styles.iconGroup}>
+        <i className={`fa fa-link ${styles.icon}`} />
+        <i className={`fa fa-picture-o ${styles.icon}`} />
+        <i className={`fa fa-quote-right ${styles.icon}`} />
       </div>
     </div>
   );
