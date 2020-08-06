@@ -1,0 +1,8 @@
+.rootWrapper {
+  margin: auto;
+  width: 70%;
+  margin-top: 50px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px rgba(0,0,0,0.2)
+}
