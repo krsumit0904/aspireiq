@@ -1,16 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './title.module.css'
+import React from "react";
+import PropTypes from "prop-types";
+import styles from "./title.module.css";
 
-const Title = ({ label }) => {
-  return (
-    <span className={styles.title}>{label}</span>
-  );
-}
+const Title = ({ label }) => (
+  <span className={styles.title}>{label}</span>
+);
 
 Title.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
-
-export default Title
+export default Title;

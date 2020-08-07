@@ -1,13 +1,11 @@
-import React from 'react';
-import Title from '../Title';
-import styles from './sender.module.css'
+import React from "react";
+import Title from "../Title";
+import styles from "./sender.module.css";
 
-const Sender = () => {
-  return (
-    <div className={styles.fromBox}>
-      <Title label="From:" />
-    </div>
-  );
-}
+const Sender = () => (
+  <div className={styles.fromBox}>
+    <Title label="From:" />
+  </div>
+);
 
-export default Sender
+export default Sender;

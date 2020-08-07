@@ -1,33 +1,34 @@
-import React, { useState } from 'react';
-import emailList from '../../data.js'
-import validateEmail from '../../Helper/validateMail'
-import Autocomplete from '../Autocomplete';
-import ValidMailId from '../ValidMailId'
-import InvalidMailId from '../InvalidMailId'
-import Title from '../Title';
-import styles from './receiver.module.css'
+import React, { useState } from "react";
+import emailList from "../../data.js";
+import validateEmail from "../../Helper/validateMail";
+import Autocomplete from "../Autocomplete";
+import ValidMailId from "../ValidMailId";
+import InvalidMailId from "../InvalidMailId";
+import Title from "../Title";
+import styles from "./receiver.module.css";
 
 const Receiver = () => {
-  const [receivers, setReceiver] = useState([])
-  const mails = emailList.split(',').map((mail) => mail.replace(/(\r\n|\n|\r)/gm, ""))
+  const [receivers, setReceiver] = useState([]);
+  const mails = emailList.split(",").map((mail) => mail.replace(/(\r\n|\n|\r)/gm, ""));
 
   const removeMailId = (index) => {
-    const updatedReceivers = receivers.filter((item, id) => id !== index)
-    setReceiver(updatedReceivers)
-  }
+    const updatedReceivers = receivers.filter((item, id) => id !== index);
+    setReceiver(updatedReceivers);
+  };
 
   return (
     <div className={styles.toBox}>
       <Title label="To:" />
       <div className={styles.receivers}>
-        {receivers.map((mailId, index) => validateEmail(mailId) ?
-          <ValidMailId
-            mailId={mailId}
-            index={index}
-            removeMailId={removeMailId}
-          /> :
-          <InvalidMailId mailId={mailId} />
-        )}
+        {receivers.map((mailId, index) => (validateEmail(mailId)
+          ? (
+            <ValidMailId
+              mailId={mailId}
+              index={index}
+              removeMailId={removeMailId}
+            />
+          )
+          : <InvalidMailId mailId={mailId} />))}
         <Autocomplete
           list={mails}
           getValue={(value) => setReceiver([...receivers, value])}
@@ -38,6 +39,6 @@ const Receiver = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Receiver
+export default Receiver;

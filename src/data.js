@@ -997,6 +997,6 @@ herzog.fredy@goldner.org,
 johnnie.cormier@walter.com,
 zullrich@gmail.com,
 precious62@jacobi.com,
-nicola.reichel@yahoo.com`
+nicola.reichel@yahoo.com`;
 
-export default emailList
+export default emailList;
