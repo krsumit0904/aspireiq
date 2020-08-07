@@ -1,8 +1,8 @@
-import React from 'react'
-import ValidMailId from '../Component/ValidMailId'
+import React from "react";
+import ValidMailId from "../Component/ValidMailId";
 
-export default { title: 'ValidMailId' }
+export default { title: "ValidMailId" };
 
 export const withDefault = () => (
-  <ValidMailId  mailId='ssumitrajput854@gmail.com'/>
-)
+  <ValidMailId mailId="ssumitrajput854@gmail.com" />
+);

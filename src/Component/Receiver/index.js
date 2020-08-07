@@ -30,10 +30,12 @@ const Receiver = () => {
                 removeMailId={removeMailId}
               />
             )
-            : <InvalidMailId
-              key={`${mailId}_${index}`}
-              mailId={mailId}
-            />
+            : (
+              <InvalidMailId
+                key={`${mailId}_${index}`}
+                mailId={mailId}
+              />
+            )
           ))
         }
         <Autocomplete
