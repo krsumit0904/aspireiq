@@ -35,12 +35,12 @@
 }
 
 .cross {
-  display: none !important;
+  visibility: hidden;
   padding: 0 5px;
 }
 
 .verifiedWrapper:hover>i {
-  display: inline-block !important;
+  visibility: visible;
 }
 
 .unverified {

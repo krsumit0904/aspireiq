@@ -36,6 +36,8 @@ const Receiver = ({ }) => {
         <Autocomplete
           list={mails}
           getValue={(value) => setReceiver([...receivers, value])}
+          updateList={setReceiver}
+          selectedList={receivers}
         />
       </div>
     </div>

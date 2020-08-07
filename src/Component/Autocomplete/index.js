@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import PropTypes from "prop-types";
 import styles from './autocomplete.module.css'
 
-const Autocomplete = ({ list, getValue }) => {
+const Autocomplete = ({ list, getValue, updateList, selectedList }) => {
   const [activeSuggestion, setActiveSuggestion] = useState(0);
   const [filteredmailIds, setFilteredMailIds] = useState([]);
   const [showSuggestion, setShowSuggestion] = useState(false);
@@ -64,6 +64,15 @@ const Autocomplete = ({ list, getValue }) => {
         return;
       }
       setActiveSuggestion(activeSuggestion + 1)
+    }
+
+    // User pressed the back space, conditionally remove last item
+    else if (e.keyCode === 8) {
+      if (userInput === '') {
+        const cloneList = selectedList.slice(0);
+        cloneList.pop()
+        updateList(cloneList)
+      }
     }
   };
 
