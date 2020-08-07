@@ -33,7 +33,8 @@ const Receiver = () => {
             : <InvalidMailId
               key={`${mailId}_${index}`}
               mailId={mailId}
-            />))
+            />
+          ))
         }
         <Autocomplete
           list={mails}
