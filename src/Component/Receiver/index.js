@@ -20,15 +20,21 @@ const Receiver = () => {
     <div className={styles.toBox}>
       <Title label="To:" />
       <div className={styles.receivers}>
-        {receivers.map((mailId, index) => (validateEmail(mailId)
-          ? (
-            <ValidMailId
+        {
+          receivers.map((mailId, index) => (validateEmail(mailId)
+            ? (
+              <ValidMailId
+                key={`${mailId}_${index}`}
+                mailId={mailId}
+                index={index}
+                removeMailId={removeMailId}
+              />
+            )
+            : <InvalidMailId
+              key={`${mailId}_${index}`}
               mailId={mailId}
-              index={index}
-              removeMailId={removeMailId}
-            />
-          )
-          : <InvalidMailId mailId={mailId} />))}
+            />))
+        }
         <Autocomplete
           list={mails}
           getValue={(value) => setReceiver([...receivers, value])}
