@@ -1,11 +1,13 @@
-import React, { useReducer, useState } from 'react';
-import PropTypes from 'prop-types';
-import styles from './receiver.module.css'
+import React, { useState } from 'react';
 import emailList from '../../data.js'
-import Autocomplete from '../Autocomplete';
 import validateEmail from '../../Helper/validateMail'
+import Autocomplete from '../Autocomplete';
+import ValidMailId from '../ValidMailId'
+import InvalidMailId from '../InvalidMailId'
+import Title from '../Title';
+import styles from './receiver.module.css'
 
-const Receiver = ({ }) => {
+const Receiver = () => {
   const [receivers, setReceiver] = useState([])
   const mails = emailList.split(',').map((mail) => mail.replace(/(\r\n|\n|\r)/gm, ""))
 
@@ -16,37 +18,26 @@ const Receiver = ({ }) => {
 
   return (
     <div className={styles.toBox}>
-      <span className={styles.title}>To:</span>
+      <Title label="To:" />
       <div className={styles.receivers}>
         {receivers.map((mailId, index) => validateEmail(mailId) ?
-          <div className={styles.verifiedWrapper}>
-            <span className={styles.verified}>
-              {mailId}
-            </span>
-            <i className={`fa fa-times ${styles.cross}`} onClick={() => removeMailId(index)} />
-          </div>
-          :
-          <div className={styles.unverifiedWrapper}>
-            <span className={styles.unverified}>
-              {mailId}
-            </span>
-            <i className={`fa fa-exclamation ${styles.exclamation}`} />
-          </div>
+          <ValidMailId
+            mailId={mailId}
+            index={index}
+            removeMailId={removeMailId}
+          /> :
+          <InvalidMailId mailId={mailId} />
         )}
         <Autocomplete
           list={mails}
           getValue={(value) => setReceiver([...receivers, value])}
           updateList={setReceiver}
           selectedList={receivers}
+          placeholder="Enter recipients..."
         />
       </div>
     </div>
   );
 }
-
-Receiver.propTypes = {
-
-};
-
 
 export default Receiver

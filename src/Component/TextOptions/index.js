@@ -1,9 +1,8 @@
-import React, { useReducer } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import styles from './textOptions.module.css'
 import 'font-awesome/css/font-awesome.min.css';
 
-const TextOptions = ({ }) => {
+const TextOptions = () => {
   return (
     <div className={styles.rootWrapper}>
       <div className={styles.selectOptions}>
@@ -36,10 +35,5 @@ const TextOptions = ({ }) => {
     </div>
   );
 }
-
-TextOptions.propTypes = {
-
-};
-
 
 export default TextOptions

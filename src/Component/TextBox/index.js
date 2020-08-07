@@ -1,18 +1,13 @@
-import React, { useReducer } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import styles from './textbox.module.css'
+import Title from '../Title';
 
-const TextBox = ({ }) => {
+const TextBox = () => {
   return (
     <div className={styles.rootWrapper}>
-      <span className={styles.title}>Enter your message...</span>
+      <Title label="Enter your message..." />
     </div>
   );
 }
-
-TextBox.propTypes = {
-
-};
-
 
 export default TextBox

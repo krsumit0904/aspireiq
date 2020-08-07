@@ -1,5 +1,4 @@
-import React, { useReducer } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import styles from './mailbox.module.css'
 import Sender from '../Sender'
 import Receiver from '../Receiver'
@@ -8,7 +7,7 @@ import TextOptions from '../TextOptions'
 import TextBox from '../TextBox'
 import Footer from '../Footer'
 
-const MailBox = ({ }) => {
+const MailBox = () => {
   return (
     <div className={styles.rootWrapper}>
       <Sender />
@@ -20,10 +19,5 @@ const MailBox = ({ }) => {
     </div>
   );
 }
-
-MailBox.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
-
 
 export default MailBox

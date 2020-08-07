@@ -1,18 +1,13 @@
-import React, { useReducer } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import Title from '../Title';
 import styles from './sender.module.css'
 
-const Sender = ({ }) => {
+const Sender = () => {
   return (
     <div className={styles.fromBox}>
-      <span className={styles.title}>From:</span>
+      <Title label="From:" />
     </div>
   );
 }
-
-Sender.propTypes = {
-
-};
-
 
 export default Sender

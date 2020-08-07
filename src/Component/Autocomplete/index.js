@@ -1,8 +1,8 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from './autocomplete.module.css'
 
-const Autocomplete = ({ list, getValue, updateList, selectedList }) => {
+const Autocomplete = ({ list, getValue, updateList, selectedList, placeholder }) => {
   const [activeSuggestion, setActiveSuggestion] = useState(0);
   const [filteredmailIds, setFilteredMailIds] = useState([]);
   const [showSuggestion, setShowSuggestion] = useState(false);
@@ -113,10 +113,19 @@ const Autocomplete = ({ list, getValue, updateList, selectedList }) => {
         onChange={onChange}
         onKeyDown={onKeyDown}
         value={userInput}
+        placeholder={placeholder}
       />
       {suggestionsListComponent}
     </div>
   );
+}
+
+Autocomplete.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.string),
+  selectedList: PropTypes.arrayOf(PropTypes.string),
+  updateList: PropTypes.func,
+  getValue: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 }
 
 export default Autocomplete;

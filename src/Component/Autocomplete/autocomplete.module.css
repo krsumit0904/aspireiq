@@ -37,7 +37,6 @@
 .inputField {
   width: 100%;
   border: none;
-  line-height: 24px;
 }
 
 .inputField:focus {

@@ -1,0 +1,26 @@
+.verified {
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.verifiedWrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.verifiedWrapper:hover {
+  background: #eee;
+}
+
+.cross {
+  visibility: hidden;
+  padding: 0 5px;
+}
+
+.verifiedWrapper:hover>i {
+  visibility: visible;
+}

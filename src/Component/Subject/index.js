@@ -1,18 +1,13 @@
-import React, { useReducer } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import Title from '../Title'
 import styles from './subject.module.css'
 
-const Subject = ({ }) => {
+const Subject = () => {
   return (
     <div className={styles.rootWrapper}>
-      <span className={styles.title}>Subject:</span>
+      <Title label="Subject:" />
     </div>
   );
 }
-
-Subject.propTypes = {
-
-};
-
 
 export default Subject
