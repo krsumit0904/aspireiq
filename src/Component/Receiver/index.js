@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import emailList from "../../data.js";
+import mails from "../../data";
 import validateEmail from "../../Helper/validateMail";
 import Autocomplete from "../Autocomplete";
 import ValidMailId from "../ValidMailId";
@@ -9,7 +9,6 @@ import styles from "./receiver.module.css";
 
 const Receiver = () => {
   const [receivers, setReceiver] = useState([]);
-  const mails = emailList.split(",").map((mail) => mail.replace(/(\r\n|\n|\r)/gm, ""));
 
   const removeMailId = (index) => {
     const updatedReceivers = receivers.filter((item, id) => id !== index);
