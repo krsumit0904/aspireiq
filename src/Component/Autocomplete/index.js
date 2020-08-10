@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./autocomplete.module.css";
+import KEYS from "./keys";
 
 const Autocomplete = ({
-  list, getValue, updateList, selectedList, placeholder,
+  list, onSelect, removeItem, placeholder,
 }) => {
   const [activeSuggestion, setActiveSuggestion] = useState(0);
   const [filteredmailIds, setFilteredMailIds] = useState([]);
@@ -34,77 +35,54 @@ const Autocomplete = ({
     setActiveSuggestion(0);
     setShowSuggestion(false);
     setUserInput("");
-    getValue(e.currentTarget.innerText);
+    onSelect(e.currentTarget.innerText);
   };
 
   // Event fired when the user presses a key down
   const onKeyDown = (e) => {
-    // User pressed the enter key, update the input and close the
-    // suggestions
-    if (e.keyCode === 13 || e.keyCode === 9) {
-      e.preventDefault();
-      if (!showSuggestion && userInput !== "") {
-        getValue(e.target.value);
-      } else {
-        getValue(filteredmailIds[activeSuggestion]);
-      }
-      setActiveSuggestion(0);
-      setShowSuggestion(false);
-      setUserInput("");
-    }
-    // User pressed the up arrow, decrement the index
-    else if (e.keyCode === 38) {
-      if (activeSuggestion === 0) {
-        return;
-      }
-      setActiveSuggestion(activeSuggestion - 1);
-    }
-    // User pressed the down arrow, increment the index
-    else if (e.keyCode === 40) {
-      if (activeSuggestion - 1 === filteredmailIds.length) {
-        return;
-      }
-      setActiveSuggestion(activeSuggestion + 1);
-    }
+    switch (e.keyCode) {
+      // User pressed the enter key, update the input and close the
+      // suggestions
+      case KEYS.ENTER:
+      case KEYS.TAB:
+        e.preventDefault();
+        if (!showSuggestion && userInput !== "") {
+          onSelect(e.target.value);
+        } else {
+          onSelect(filteredmailIds[activeSuggestion]);
+        }
+        setActiveSuggestion(0);
+        setShowSuggestion(false);
+        setUserInput("");
+        break;
 
-    // User pressed the back space, conditionally remove last item
-    else if (e.keyCode === 8) {
-      if (userInput === "") {
-        const cloneList = selectedList.slice(0);
-        cloneList.pop();
-        updateList(cloneList);
-      }
+      // User pressed the up arrow, decrement the index
+      case KEYS.UP:
+        if (activeSuggestion === 0) {
+          return;
+        }
+        setActiveSuggestion(activeSuggestion - 1);
+        break;
+
+      // User pressed the down arrow, increment the index
+      case KEYS.DOWN:
+        if (activeSuggestion - 1 === filteredmailIds.length) {
+          return;
+        }
+        setActiveSuggestion(activeSuggestion + 1);
+        break;
+
+      // User pressed the back space, conditionally remove last item
+      case KEYS.BACKSPACE:
+        if (userInput === "") {
+          removeItem();
+        }
+        break;
+
+      default:
+        break;
     }
   };
-
-  let suggestionsListComponent;
-
-  if (showSuggestion && userInput) {
-    if (filteredmailIds.length) {
-      suggestionsListComponent = (
-        <ul className={styles.suggestions}>
-          {filteredmailIds.map((suggestion, index) => {
-            let className;
-
-            // Flag the active suggestion with a class
-            if (index === activeSuggestion) {
-              className = styles.suggestionActive;
-            }
-
-            return (
-              <li
-                className={className}
-                key={suggestion}
-                onClick={onClick}
-              >
-                {suggestion}
-              </li>
-            );
-          })}
-        </ul>
-      );
-    }
-  }
 
   return (
     <div className={styles.inputWrapper}>
@@ -116,16 +94,28 @@ const Autocomplete = ({
         value={userInput}
         placeholder={placeholder}
       />
-      {suggestionsListComponent}
+      {showSuggestion && userInput && filteredmailIds.length
+      && (
+        <ul className={styles.suggestions}>
+          {filteredmailIds.map((suggestion, index) => (
+            <li
+              className={index === activeSuggestion ? styles.suggestionActive : ""}
+              key={suggestion}
+              onClick={onClick}
+            >
+              {suggestion}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
 
 Autocomplete.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.string),
-  selectedList: PropTypes.arrayOf(PropTypes.string),
-  updateList: PropTypes.func,
-  getValue: PropTypes.func.isRequired,
+  list: PropTypes.arrayOf(PropTypes.string).isRequired,
+  removeItem: PropTypes.func,
+  onSelect: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
 };
 

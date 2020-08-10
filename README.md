@@ -1,5 +1,7 @@
 ## AspireIQ
 
+The task is completed with gmail's compose mail feature as reference.
+
 ### To run the project:
 
 1. npm install
@@ -18,7 +20,7 @@ Run the command `npm run test` to run and check the test cases. `Enzyme` has bee
 1. Receiver component contains autocomplete input field which displays filtered email list upon user input.
 2. Autocomplete works upon "Tab" and "Enter" key or by clicking on the desired mail id.
 3. The valid email ids are displayed with a button visible on  hover, to remove the mail id. While we can also use backspace key to remove them.
-4. The invalid email id are displayed with error indicators. These invalid ids can be removed via backspace key or by clicking on cross icon that appears on hover.
+4. The invalid email id are displayed with error indicators. These invalid ids can be removed via backspace key or by clicking on the cross icon that appears on hover.
 5. The rest of the UI is completely static but responsive and is not functional at the moment.
 
 ### Further approach
@@ -27,4 +29,4 @@ Run the command `npm run test` to run and check the test cases. `Enzyme` has bee
 
 ### Changes made (not mentioned in task)
 
-1. Ability to delete a invalid mail id by clicking on cross icon that appears on hover.
+1. Ability to delete a invalid mail id by clicking on the cross icon that appears on hover.

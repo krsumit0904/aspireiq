@@ -10,9 +10,17 @@ import styles from "./receiver.module.css";
 const Receiver = () => {
   const [receivers, setReceiver] = useState([]);
 
-  const removeMailId = (index) => {
-    const updatedReceivers = receivers.filter((item, id) => id !== index);
-    setReceiver(updatedReceivers);
+  const removeMailId = (mailId) => {
+    const receiverClone = receivers.slice();
+    const index = receiverClone.indexOf(mailId);
+    receiverClone.splice(index, 1);
+    setReceiver(receiverClone);
+  };
+
+  const handleBackSpace = () => {
+    const cloneList = receivers.slice(0);
+    cloneList.pop();
+    setReceiver(cloneList);
   };
 
   return (
@@ -23,7 +31,7 @@ const Receiver = () => {
           receivers.map((mailId, index) => (validateEmail(mailId)
             ? (
               <ValidMailId
-                key={`${mailId}`}
+                key={`${mailId}_${index}`}
                 mailId={mailId}
                 index={index}
                 removeMailId={removeMailId}
@@ -41,9 +49,8 @@ const Receiver = () => {
         }
         <Autocomplete
           list={[...new Set(mails)]}
-          getValue={(value) => setReceiver([...receivers, value])}
-          updateList={setReceiver}
-          selectedList={receivers}
+          onSelect={(value) => setReceiver([...receivers, value])}
+          removeItem={handleBackSpace}
           placeholder="Enter recipients..."
         />
       </div>

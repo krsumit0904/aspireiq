@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./invalidMailId.module.css";
 
-const InvalidMailId = ({ mailId, index, removeMailId }) => {
-  const [iconClass, setIconClass] = useState(`fa fa-exclamation ${styles.exclamation}`);
+const InvalidMailId = ({ mailId, removeMailId }) => {
+  const crossIconClass = `fa fa-times ${styles.cross}`;
+  const exclaimIconClass = `fa fa-exclamation ${styles.exclamation}`;
+  const [showCrossIcon, setShowCrossIcon] = useState(false);
 
   return (
     <div className={styles.unverifiedWrapper}>
@@ -11,22 +13,19 @@ const InvalidMailId = ({ mailId, index, removeMailId }) => {
         {mailId}
       </span>
       <i
-        className={iconClass}
-        onMouseOver={() => setIconClass(`fa fa-times ${styles.cross}`)}
-        onMouseOut={() => setIconClass(`fa fa-exclamation ${styles.exclamation}`)}
-        onMouseDown
-        onClick={iconClass === `fa fa-times ${styles.cross}`
-          ? () => removeMailId(index)
-          : ""}
+        className={showCrossIcon ? crossIconClass : exclaimIconClass}
+        onMouseOver={() => setShowCrossIcon(true)}
+        onMouseOut={() => setShowCrossIcon(false)}
+        onClick={showCrossIcon
+          ? () => removeMailId(mailId)
+          : () => void (0)}
       />
     </div>
-
   );
 };
 
 InvalidMailId.propTypes = {
   mailId: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
   removeMailId: PropTypes.func.isRequired,
 };
 
