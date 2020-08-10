@@ -13,6 +13,14 @@
   border-radius: 8px;
 }
 
+.cross {
+  font-size: 12px !important;
+  padding: 1px 3px !important;
+  background: #F24E1E;
+  color: white;
+  border-radius: 8px;
+}
+
 .unverifiedWrapper {
   display: flex;
   align-items: center;

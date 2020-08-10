@@ -23,7 +23,7 @@ const Receiver = () => {
           receivers.map((mailId, index) => (validateEmail(mailId)
             ? (
               <ValidMailId
-                key={`${mailId}_${index}`}
+                key={`${mailId}`}
                 mailId={mailId}
                 index={index}
                 removeMailId={removeMailId}
@@ -33,12 +33,14 @@ const Receiver = () => {
               <InvalidMailId
                 key={`${mailId}_${index}`}
                 mailId={mailId}
+                index={index}
+                removeMailId={removeMailId}
               />
             )
           ))
         }
         <Autocomplete
-          list={mails}
+          list={[...new Set(mails)]}
           getValue={(value) => setReceiver([...receivers, value])}
           updateList={setReceiver}
           selectedList={receivers}
