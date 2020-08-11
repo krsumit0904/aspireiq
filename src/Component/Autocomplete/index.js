@@ -8,7 +8,6 @@ const Autocomplete = ({
 }) => {
   const [activeSuggestion, setActiveSuggestion] = useState(0);
   const [filteredmailIds, setFilteredMailIds] = useState([]);
-  const [showSuggestion, setShowSuggestion] = useState(false);
   const [userInput, setUserInput] = useState("");
 
   // Event fired when the input value is changed
@@ -25,7 +24,6 @@ const Autocomplete = ({
     setFilteredMailIds(filteredmailIds);
     setActiveSuggestion(0);
     setUserInput(e.currentTarget.value);
-    setShowSuggestion(!!filteredmailIds.length);
   };
 
   // Event fired when the user clicks on a suggestion
@@ -33,7 +31,6 @@ const Autocomplete = ({
     // Update the user input and reset the rest of the state
     setFilteredMailIds([]);
     setActiveSuggestion(0);
-    setShowSuggestion(false);
     setUserInput("");
     onSelect(e.currentTarget.innerText);
   };
@@ -46,13 +43,12 @@ const Autocomplete = ({
       case KEYS.ENTER:
       case KEYS.TAB:
         e.preventDefault();
-        if (!showSuggestion && userInput !== "") {
+        if (!filteredmailIds.length && userInput !== "") {
           onSelect(e.target.value);
         } else {
           onSelect(filteredmailIds[activeSuggestion]);
         }
         setActiveSuggestion(0);
-        setShowSuggestion(false);
         setUserInput("");
         break;
 
@@ -94,7 +90,7 @@ const Autocomplete = ({
         value={userInput}
         placeholder={placeholder}
       />
-      {showSuggestion && userInput && filteredmailIds.length
+      {userInput && !!filteredmailIds.length
       && (
         <ul className={styles.suggestions}>
           {filteredmailIds.map((suggestion, index) => (
